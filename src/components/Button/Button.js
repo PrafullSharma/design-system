@@ -1,8 +1,8 @@
 import React from 'react';
-import './index.css';
+import './index.scss';
 
 const Button = ({ children }) => {
-  return <button className="my-button">{children}</button>;
+  return <div className="my-button">{children}</div>;
 };
 
 export default Button;
