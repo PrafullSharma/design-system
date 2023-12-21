@@ -1,7 +1,3 @@
-import React from 'react';
-
-const Button = ({ children, onClick }) => (
-  <button onClick={onClick}>{children}</button>
-);
+import { Button } from './components/Button';
 
 export { Button };

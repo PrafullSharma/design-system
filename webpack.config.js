@@ -6,22 +6,24 @@ module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    entry: './src/index.js',
+    entry: {
+      index: './src/index.js',
+      'components/Button': './src/components/Button/index.js',
+    },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'index.js',
-      library: 'psds',
-      libraryTarget: 'commonjs2',
+      filename: '[name].js',
+      libraryTarget: 'commonjs2'
     },
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
+          test: /\.js$/,
+          exclude: /(node_modules)/,
           use: 'babel-loader'
         },
         {
-          test: /\.(css|scss)$/,
+          test: /\.scss$/,
           use: [
             'style-loader',
             'css-loader',
@@ -57,11 +59,11 @@ module.exports = (env, argv) => {
             }
           ]
         }
-      ],
+      ]
     },
     externals: {
-      react: 'commonjs react',
-      'react-dom': 'commonjs react-dom',
+      'react': 'commonjs react',
+      'react-dom': 'commonjs react-dom'
     },
     optimization: {
       minimize: isProduction,
@@ -85,5 +87,5 @@ module.exports = (env, argv) => {
     plugins: [
       new CleanWebpackPlugin(),
     ],
-  }
+  };
 };
